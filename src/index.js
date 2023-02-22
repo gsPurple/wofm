@@ -308,7 +308,7 @@ class BattleContent extends React.Component {
         const die1 = rollDie();
         const die2 = rollDie();
         var bonus = 0;
-        if(this.props.page.bonus != undefined)
+        if(this.props.page.bonus !== undefined)
             bonus = this.props.page.bonus;
 
         if(this.props.equipment.includes("Iron Helmet"))
@@ -712,17 +712,22 @@ class TextContent extends React.Component {
 
         var maxBet = 20;
 
-        if(props.gameSave[GOLD] !== undefined && props.gameSave[GOLD] < maxBet)
-            maxBet = props.gameSave[GOLD]
+        if(props.gameSave !== undefined)
+        {
+            if(props.gameSave[GOLD] !== undefined && props.gameSave[GOLD] < maxBet)
+                maxBet = props.gameSave[GOLD]
 
-        this.state = {
-            betValue: 1,
-            betMax: maxBet,
-            rolled: false,
-            playerRoll: 0,
-            oldManRoll: 0,
-            initGold: props.gameSave[GOLD]
-        };
+            this.state = {
+                betValue: 1,
+                betMax: maxBet,
+                rolled: false,
+                playerRoll: 0,
+                oldManRoll: 0,
+                initGold: props.gameSave[GOLD]
+            };
+        }
+
+        
 
         this.handleChange = this.handleChange.bind(this);
     }
