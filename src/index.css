@@ -1,14 +1,229 @@
 body {
-  margin: 0;
-  padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    font: 14px "Century Gothic", Futura, sans-serif;
+    margin: 20px;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+.tip {
+    font: 12px "Century Gothic", Futura, sans-serif;
+    padding: 5px;
 }
+
+.title {
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    padding-bottom: 5px;
+}
+
+.container {
+    text-align: center;
+}
+
+.marginTop{
+    margin-top: 30px;
+}
+
+.menubuttons {
+    display: block;
+    margin:0 auto;
+}
+
+.buttonback {
+    position: absolute;
+    left:    10px;
+    bottom:   10px;
+}
+
+.buttonnext {
+    position: absolute;
+    right:    10px;
+    bottom:   10px;
+
+}
+.statbox {
+    background: #fff;
+    border: 2px solid #999;
+    width: 150px;
+    height: 30px;
+    margin-bottom: 3px;
+    display: inline-block;
+}
+
+.equipmentbox {
+    background: #fff;
+    border: 2px solid #999;
+    width: 150px;
+    display: flex;
+    margin-bottom: 3px;
+}
+
+.statmargin {
+    margin-top: 5px;
+    margin-left: 5px;
+    font-weight: bold;
+    display: inline-block;
+}
+.equipmargin {
+    display: inline-block;
+}
+
+.enemiesbox {
+    background: #fff;
+    border: 2px solid #999;
+    display: flex;
+    padding-right: 5px;
+    margin-bottom: 3px;
+    float: right;
+}
+
+.turnbox {
+    background: #fff;
+    border: 2px solid #999;
+    padding-right: 5px;
+    padding-bottom: 5px;
+    display: inline-block;
+    margin-bottom: 3px;
+    float: right;
+}
+
+.merda {
+    width: 185px;
+    float: right;
+}
+
+#imageContainer {
+    width: 260px;
+    height: 370px;
+    margin: 0 auto;
+    margin-top: 10px;
+    border: 2px solid #000000;
+}
+
+#swordImgContainer {
+    width: 305px;
+    height: 85px;
+    margin: 0 auto;
+    margin-top: 10px;
+}
+
+#choiceList {
+    margin-top: 30px;
+}
+
+#image {
+    width: 260px;
+    height: 370px;
+}
+
+#imageSword {
+    width: 305px;
+    height: 85px;
+}
+
+.textview {
+    background: #fff;
+    border: 2px solid #999;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px;
+    padding-top: 0px;
+    text-align: justify;
+    width: 500px;
+    height: 700px;
+    overflow-y: auto;
+    margin: 0 auto;
+    position: absolute;
+    top:0; bottom: 0; right: 0; left: 0;
+
+}
+
+.marginLeft {
+    float: right
+}
+
+.ul {
+    padding-left: 5px;
+    list-style: none;
+}
+
+.invItem:hover {
+    background-image: linear-gradient(to left, rgba(255,0,0,0), rgba(170,170,170,0.4));
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.tooltip {
+  position: relative;
+  
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  top: -5px;
+  left: 110%;
+}
+
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+.escapeBttn {
+    margin-top: 50px;
+}
+
+.red {
+    color: darkred;
+}
+
+.green {
+    color: darkgreen;
+}
+
+.blue {
+    color: darkblue;
+}
+
+.slidecontainer {
+  width: 100%;
+}
+
+.slider {
+  -webkit-appearance: none;
+  width:50%;
+  height: 5px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 5px;
+  height: 5px;
+  background: #f5de31;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 8px;
+  height: 15px;
+  background: #f5de31;
+  cursor: pointer;
+}
+
