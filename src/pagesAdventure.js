@@ -2278,6 +2278,7 @@ var advPages = [
         choice0: 227,
         updtLuck: true,
         luckAmount: 1,
+        canTakeProvisions: true,
         previous: -1
     },
     {
@@ -2360,8 +2361,16 @@ var advPages = [
     {
         current: 244,
         title: "249",
-        pageContent: "The dog springs as you move. Its hideous black teeth are coming straight for your throat! Two metres from you, a blast of fire shoots from its mouth right at your face! You duck just in time but must now fight the beast.",
+        pageContent: "The dog springs as you move. Its hideous black teeth are coming straight for your throat! Two metres from you, a blast of fire shoots from its mouth right at your face! You duck just in time but must now fight the beast.\n\nEach round the Dog has a chance of hitting you with its fiery breath. You may Escape through the south door.\n\nThe old man watches the fight but does not move unless you kill his dog.",
         choices: [],
+        image: 'wofmsword.png',
+        battle: true,
+        extraaction: true,
+        canEscape: true,
+        escape: 242,
+        action0: "Fiery Breath",
+        enemies: ["Dog-7-6"],
+        win: 253,
         previous: -1
     },
     {
@@ -2426,31 +2435,50 @@ var advPages = [
         previous: -1
     },
     {
-        current: 0,
-        title: "0",
-        pageContent: "erro",
-        choices: [],
+        current: 253,
+        title: "249",
+        pageContent: "You killed the old man's dog. You may Escape through the south door, but you will not have time to take anything with you.\n\nYou may also stay in the room.\n\nYou win 1 LUCK point anyway.",
+        choices: ["Escape south - 66", "Stay in the room - 304"],
+        choice0: 242,
+        choice1: 254,        
+        updtLuck: true,
+        luckAmount: 1,
         previous: -1
     },
     {
-        current: 0,
-        title: "0",
-        pageContent: "erro",
+        current: 254,
+        title: "304",
+        pageContent: "The old man is furious at you killing his dog! His eyes turn white with anger. He slowly rises from his seat and as he stands he appears to gain in size and stature. He is changing in front of your eyes. He sprouts hair on his face and forearms. His nose lengthens and becomes dog-like. His teeth are pointed. He is a WEREWOLF and he advances towards you.\n\nYou can Escape only through the door behind you to the south. Otherwise you must fight him:",
         choices: [],
+        image: 'wofmsword.png',    
+        battle: true,
+        canEscape: true,
+        escape: 242,
+        enemies: ["Werewolf-8-8"],
+        win: 255,
         previous: -1
     },
     {
-        current: 0,
-        title: "0",
-        pageContent: "erro",
-        choices: [],
+        current: 255,
+        title: "203",
+        pageContent: "Add 1 point to your LUCK for defeating the Werewolf. You may rest and eat Provisions if you wish. As you look around the room there appears to be little of use, although the bunch of keys looks interesting, particularly the one marked 'Boat House'. None are numbered. You may take the keys if you wish. There are doors to the west and south",
+        choices: ["Go West - 38", "Go South - 66", "Take Boat House Key"],
+        choice0: 256,
+        choice1: 242,
+        choice2: "Take Boat House Key",
+        updtLuck: true,
+        luckAmount: 1,
+        canTakeProvisions: true,
         previous: -1
     },
     {
-        current: 0,
-        title: "0",
-        pageContent: "erro",
-        choices: [],
+        current: 256,
+        title: "38",
+        pageContent: "You open the door to find the Werewolf's larder, a miscellaneous collection of bones and decaying meats. The smell is nauseating, although a jar of pickled eggs seems to offer fairly palatable food. If you wish to take these, there will be enough for two meals.\n\nAdd 2 points to your Provisions.\n\nBack in the room, you may now go out through the south door.",
+        choices: ["Leave through the south door - 66"],
+        choice0: 242,
+        updtProvisions: true,
+        provisionAmount: 2,
         previous: -1
     },
     {

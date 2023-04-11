@@ -31,7 +31,8 @@ const GAME = "game";
 const STATS = "Stats";
 const DEAD = "dead";
 
-const TESTE = 243;
+const TESTE = 255;
+const TEST_GAMESAVE = [16,10,7,5,8,8,10,10,0,15,["Sword", "Shield", "Lantern", "Potion of Strength x2"]];
 
 function statButtonToggle(props) {
     console.log("Stat toggle function -->> " + props.pageNumber);
@@ -261,6 +262,7 @@ class BattleContent extends React.Component {
             currentSTA:parseInt(this.props.page.enemies[0].split("-")[2]),
             enemySKL: this.props.page.enemies[0].split("-")[1],
             enemyAtk: 0,
+            enemyExtraAct: "",
             shield: 0,
             turnCounter: 1,
             canShieldClick: true,
@@ -296,11 +298,30 @@ class BattleContent extends React.Component {
         const die2 = rollDie();
         const result = die1 + die2 + parseInt(this.state.enemySKL);
 
-        console.log("ENEMY ATTACK ROLL ->> " + die1 + " " + die2 + " " + this.state.enemySKL);
+        console.log("ENEMY ATTACK ROLL ->> " + die1 + " " + die2 + " Skill: " + this.state.enemySKL);
 
         this.setState({
             enemyAtk: result,
             turn: "player"
+        });
+    }
+
+    rollEnemyExtraAction() {
+        const die1 = rollDie();
+        let result = "";
+
+        console.log("ROLL ENEMY EXTRA ACTION - " + die1);
+
+        if(die1 > 2) {
+            result = "Miss";
+        }
+        else {
+            result = "Hit!";
+        }
+
+        this.setState({
+            enemyExtraAct: result,
+            turn: "extraPlayer"
         });
     }
 
@@ -316,7 +337,7 @@ class BattleContent extends React.Component {
 
         const result = die1 + die2 + parseInt(this.props.gameSave[CRRNTSKILL]) + bonus;
 
-        console.log("PLAYER ATTACK ROLL ->> " + die1 + " " + die2 + " " + this.props.gameSave[CRRNTSKILL] + " Bonus: " + bonus);
+        console.log("PLAYER ATTACK ROLL ->> " + die1 + " " + die2 + " Skill: " + this.props.gameSave[CRRNTSKILL] + " Bonus: " + bonus);
 
         if(result === parseInt(this.state.enemyAtk))
             this.setState({
@@ -336,6 +357,7 @@ class BattleContent extends React.Component {
         const die2 = rollDie();
 
         const result = die1 + die2;
+        console.log("TURN WHEN TEST YOUR LUCK IS CLICKED: " + this.state.turn);
 
         if(parseInt(this.state.enemyAtk) < parseInt(this.state.playerAtk)){
             if(result <= this.props.gameSave[CRRNTLCK]) {
@@ -370,7 +392,9 @@ class BattleContent extends React.Component {
                 })
             }
         }
-        else if(this.state.turn === "escape") {
+        
+        if(this.state.turn === "escape") {
+            console.log("testing luck during escape");
             if(result <= this.props.gameSave[CRRNTLCK]) {
                 this.setState({
                     textColor: 'green',
@@ -383,6 +407,24 @@ class BattleContent extends React.Component {
                     textColor: 'red',
                     luckText: "Unlucky",
                     turn: "readyE",
+                    lucky: -1
+                });
+            }
+        }
+        
+        if(this.state.turn === "extraPlayer") {
+            if(result <= this.props.gameSave[CRRNTLCK]) {
+                this.setState({
+                    textColor: 'green',
+                    luckText: 'Lucky (Dodged -1 DMG)',
+                    turn: "ready",
+                    lucky: 1
+                });
+            }else {
+                this.setState({
+                    textColor: 'red',
+                    luckText: "Unlucky",
+                    turn: "ready",
                     lucky: -1
                 });
             }
@@ -433,43 +475,63 @@ class BattleContent extends React.Component {
         let playerSTA = parseInt(this.state.playerCurrSTA);
         let enemySTA = parseInt(this.state.currentSTA);
         let shieldVal = this.state.shield;
+        console.log("STATE IN BATTLE - " + this.state.turn);
+        if((this.state.turn !== "extraPlayer" && this.state.turn !== "extraEnemy")) {
+            if(parseInt(this.state.enemyAtk) > parseInt(this.state.playerAtk)){
 
-        if(parseInt(this.state.enemyAtk) > parseInt(this.state.playerAtk)){
+                if(this.state.lucky > 0){
+                    playerSTA -= 1;
+    
+                }else if(this.state.lucky < 0){
+                    playerSTA -= 3;
+    
+                }else {
+                    playerSTA -= 2;
+    
+                }
+    
+                this.props.updateSta(playerSTA);
+    
+            }else if(parseInt(this.state.enemyAtk) < parseInt(this.state.playerAtk)) {
+    
+                if(this.state.lucky > 0){
+                    enemySTA -= 4;
+    
+                }else if(this.state.lucky < 0){
+                    enemySTA -= 1;
+    
+                }else {
+                    enemySTA -= 2;
+    
+                }
+            }
+        }
 
-            if(this.state.lucky > 0){
+        if(this.state.enemyExtraAct === "Hit!"){
+            console.log("lucky = " + this.state.lucky);
+            if(this.state.lucky <= 0){
                 playerSTA -= 1;
-
-            }else if(this.state.lucky < 0){
-                playerSTA -= 3;
-
-            }else {
-                playerSTA -= 2;
-
             }
 
             this.props.updateSta(playerSTA);
+        }
 
-        }else if(parseInt(this.state.enemyAtk) < parseInt(this.state.playerAtk)) {
-
-            if(this.state.lucky > 0){
-                enemySTA -= 4;
-
-            }else if(this.state.lucky < 0){
-                enemySTA -= 1;
-
-            }else {
-                enemySTA -= 2;
-
-            }
+        let extra = "";
+        if(this.props.page.extraaction && this.state.enemyExtraAct === "") {
+            extra = "extraEnemy";
+        }
+        else {
+            extra = "enemy";
         }
 
         this.setState({
             playerCurrSTA: (playerSTA  + shieldVal),
             currentSTA: enemySTA,
-            turn: "enemy",
+            turn: extra,
             lucky: 0,
             enemyAtk: 0,
             playerAtk: 0,
+            enemyExtraAct: "",
             miss: false,
             shield: 0,
             turnCounter: this.state.turnCounter + 1,
@@ -516,8 +578,15 @@ class BattleContent extends React.Component {
                     <p></p>
                     Skill: {this.state.enemySKL}
                     {(this.state.turn !== "victory" && this.state.turn !== "lost") && <div className="marginLeft">
-                        Attack Strength: {(this.state.enemyAtk > 0) && <span id="enemyAtk">{this.state.enemyAtk}</span>}
-                        {this.state.turn === "enemy" && <button id="rollEnemyAtk" onClick={() => this.rollEnemyAtk()}>Roll</button>}
+                        {(this.state.turn !== "extraEnemy" && this.state.turn !== "extraPlayer") && <div>
+                            <span>Attack Strength:</span> {(this.state.enemyAtk > 0) && <span id="enemyAtk">{this.state.enemyAtk}</span>}
+                            {this.state.turn === "enemy" && <button id="rollEnemyAtk" onClick={() => this.rollEnemyAtk()}>Roll</button>}
+                        </div>}
+                        <br></br>
+                        {(this.state.turn === "extraEnemy" || this.state.turn === "extraPlayer") && <div>
+                            <span>{props.page.action0}:</span> {(this.state.enemyExtraAct !== "") && <span id="extraAct">{this.state.enemyExtraAct}</span>}
+                            {this.state.turn === "extraEnemy" && <button id="rollEnemyExtraAct" onClick={() => this.rollEnemyExtraAction()}>Roll</button>}
+                        </div>}
                     </div>}
                     {this.state.turn === "victory" && <div className="marginLeft">
                         You win!
@@ -528,7 +597,7 @@ class BattleContent extends React.Component {
                     You
                     <p></p>
                     Skill: {this.props.gameSave[CRRNTSKILL]} {this.props.equipment.includes("Iron Helmet") && <span style={{color:'green'}}>(+1 from Iron Helmet)</span>}
-                    {(this.state.turn !== "victory" && this.state.turn !== "lost") && <div className="marginLeft">
+                    {(this.state.turn !== "victory" && this.state.turn !== "lost") && (this.state.turn !== "extraPlayer") && (this.state.turn !== "extraEnemy") && <div className="marginLeft">
                         Attack Strength: {(this.state.playerAtk > 0) && <span id="playerAtk">{this.state.playerAtk}</span>}
                         {this.state.turn === "player" && <button id="rollPlayerAtk" onClick={() => this.rollPlayerAtk()}>Roll</button>}
                     </div>}
@@ -538,20 +607,22 @@ class BattleContent extends React.Component {
                     <br></br>
                     Stamina: {this.state.playerCurrSTA}/{this.props.gameSave[INITSTAMN]}
 
-                    {((this.state.turn === "fight") || (this.state.turn === "ready")) &&
+                    {((this.state.turn === "fight") || (this.state.turn === "ready") || (this.state.turn === "extraPlayer")) &&
                         <div>
                             <div className="container">
 
-                                {(this.state.turn !== "ready" && !(this.state.miss)) && <button onClick={() => this.testLuck()}>
+                                {(this.state.turn !== "ready" && !(this.state.miss)) && (this.state.enemyExtraAct !== "Miss") && <button onClick={() => this.testLuck()}>
                                         Test your Luck
                                     </button>}
                                 &nbsp;
                                 {this.state.turn === "ready" && <span style={{color:this.state.textColor, fontSize: 14}}>{this.state.luckText}</span>}
                                 {this.state.miss && <span style={{fontSize: 14}}>Attacks Missed</span>}
-                                {(this.state.turn !== "ready" && !(this.state.miss)) && <span>or</span>}
+                                {(this.state.turn !== "ready" && !(this.state.miss)) && (this.state.enemyExtraAct !== "Miss") && <span>or</span>}
                                 &nbsp;
                                 <button onClick={() => this.battle()}>
-                                    Battle
+                                    {(this.state.turn !== "extraPlayer") && <span>Battle</span>}
+                                    {(this.state.turn === "extraPlayer") && (this.state.enemyExtraAct === "Miss") && <span>You dodged!</span>}
+                                    {(this.state.turn === "extraPlayer") && (this.state.enemyExtraAct === "Hit!") && <span>Prepare for next round</span>}
                                 </button>
                             </div>
                             {this.state.playerAtk < this.state.enemyAtk && this.props.equipment.includes("Golden Crescent") &&
@@ -574,7 +645,7 @@ class BattleContent extends React.Component {
                         </div>
                     }
 
-                    {(props.page.canEscape && this.state.turn != "victory" && this.state.turn != "escape" && this.state.turn != "successEscape" && this.state.turn != "lost") &&
+                    {(props.page.canEscape && this.state.turn !== "victory" && this.state.turn !== "escape" && this.state.turn !== "successEscape" && this.state.turn !== "lost") &&
                         <div className="container">
                             {this.state.turn !== "readyE" &&
                                 <button className="escapeBttn tooltip" onClick={() => this.escape()}>
@@ -585,7 +656,7 @@ class BattleContent extends React.Component {
                         </div>
                     }
 
-                    {(props.page.current === 199 || props.page.current === 217) && this.state.turnCounter > 3 && this.state.turn != "victory" && this.state.turn != "escape" && this.state.turn != "successEscape" && this.state.turn != "lost" &&
+                    {(props.page.current === 199 || props.page.current === 217) && this.state.turnCounter > 3 && this.state.turn !== "victory" && this.state.turn !== "escape" && this.state.turn !== "successEscape" && this.state.turn !== "lost" &&
                         <div className="container">
                             {this.state.turn !== "readyE" &&
                                 <button className="escapeBttn tooltip" onClick={() => this.escape()}>
@@ -596,7 +667,7 @@ class BattleContent extends React.Component {
                         </div>
                     }
                     
-                    {(props.page.current === 225) && this.state.turnCounter > 3 && this.state.turn != "victory" && this.state.turn != "escape" && this.state.turn != "successEscape" && this.state.turn != "lost" &&
+                    {(props.page.current === 225) && this.state.turnCounter > 3 && this.state.turn !== "victory" && this.state.turn !== "escape" && this.state.turn !== "successEscape" && this.state.turn !== "lost" &&
                         <div className="container">
                             {this.state.turn !== "readyE" && (this.state.currentSTA < this.state.enemySTA) &&
                                 <button className="escapeBttn" onClick={() => props.onClick(props.page.escape)}>
@@ -1063,6 +1134,14 @@ function tooltipText(item) {
             result = ToolTips.Escape;
             break;
 
+        case "Sword":
+            result = ToolTips.Sword;
+            break;
+
+        case "Shield":
+            result = ToolTips.Shield;
+            break;
+
         case "Key 99":
             result = ToolTips.Key99;
             break;
@@ -1094,7 +1173,14 @@ function tooltipText(item) {
         case "Light Sword":
             result = ToolTips.LightSword;
             break;
+        
+        case "Boat House Key":
+            result = ToolTips.BoatHouseKey;
+            break;
 
+        case "Potion of Invisibility":
+            result = ToolTips.PotionofInvisibility;
+            break;
         default:
     }
 
@@ -1842,8 +1928,8 @@ class Game extends React.Component {
                 this.setState({
                     section: GAME,
                     pageArray: AdvPages.data,
-                    gameSave: [16,10,7,7,8,8,10,10,0,15,["Sword", "Shield", "Lantern", "Potion of Strength x2"]],
-                    equipment: ["Sword", "Shield", "Lantern", "Potion of Strength x2","Potion of Invisibility","Cheese", "Iron Helmet","Boat House Key"],
+                    gameSave: TEST_GAMESAVE,
+                    equipment: ["Sword", "Shield", "Lantern", "Potion of Strength x2","Potion of Invisibility","Cheese", "Iron Helmet"],
                     pageNumber: TESTE,
                 });
                 break;
@@ -1930,6 +2016,19 @@ class Game extends React.Component {
                 equips = this.state.equipment;
                 if(!equips.includes("Key 9")) {
                     e = equips.concat(["Key 9"]);
+                    this.setState({
+                        equipment: e,
+                        gameSave: [x[INITSTAMN],x[CRRNTSTAMN],x[INITLCK],x[CRRNTLCK],x[INITSKILL],x[CRRNTSKILL],x[INITPROVI],x[CRRNTPROVI],x[JEWELS],x[GOLD],e]
+                    });
+                }
+                break;
+
+            case "Take Boat House Key":
+                console.log("WTF");
+                x = this.state.gameSave.slice();
+                equips = this.state.equipment;
+                if(!equips.includes("Boat House Key")) {
+                    e = equips.concat(["Boat House Key"]);
                     this.setState({
                         equipment: e,
                         gameSave: [x[INITSTAMN],x[CRRNTSTAMN],x[INITLCK],x[CRRNTLCK],x[INITSKILL],x[CRRNTSKILL],x[INITPROVI],x[CRRNTPROVI],x[JEWELS],x[GOLD],e]
@@ -2081,6 +2180,7 @@ class Game extends React.Component {
                 var skill = x[CRRNTSKILL];
                 var equips = this.state.equipment;
                 var canProvision = this.state.canUseProvi;
+                var provisions = x[CRRNTPROVI];
 
                 if(this.state.pageArray[this.state.pageNumber].updtlife){
                     sta = parseInt(this.state.gameSave[CRRNTSTAMN]) + this.state.pageArray[this.state.pageNumber].lifeAmount;
@@ -2125,6 +2225,10 @@ class Game extends React.Component {
                         luck = x[INITLCK];
                 }
 
+                if(this.state.pageArray[this.state.pageNumber].updtProvisions){
+                    provisions = parseInt(this.state.gameSave[CRRNTPROVI]) + this.state.pageArray[this.state.pageNumber].provisionAmount;
+                }
+
                 if(this.state.pageArray[this.state.pageNumber].updtSkill) {
                     skill = parseInt(this.state.gameSave[CRRNTSKILL]) + this.state.pageArray[this.state.pageNumber].skillAmount;
                     if(skill > x[INITSKILL])
@@ -2143,7 +2247,7 @@ class Game extends React.Component {
                 this.setState({
                     section: GAME,
                     pageNumber: i,
-                    gameSave: [x[INITSTAMN],sta,x[INITLCK],luck,x[INITSKILL],skill,x[INITPROVI],x[CRRNTPROVI],jewels,gold,x[10]],
+                    gameSave: [x[INITSTAMN],sta,x[INITLCK],luck,x[INITSKILL],skill,x[INITPROVI],provisions,jewels,gold,x[10]],
                     equipment: equips,
                     canUseProvi: canProvision
                 });
