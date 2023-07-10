@@ -1,9 +1,9 @@
 {
   "main.css": "/wofm/static/css/main.23619fce.chunk.css",
-  "main.js": "/wofm/static/js/main.cc7cd69f.chunk.js",
-  "main.js.map": "/wofm/static/js/main.cc7cd69f.chunk.js.map",
-  "static/js/1.d3e7a9cb.chunk.js": "/wofm/static/js/1.d3e7a9cb.chunk.js",
-  "static/js/1.d3e7a9cb.chunk.js.map": "/wofm/static/js/1.d3e7a9cb.chunk.js.map",
+  "main.js": "/wofm/static/js/main.71132b7e.chunk.js",
+  "main.js.map": "/wofm/static/js/main.71132b7e.chunk.js.map",
+  "static/js/1.f42583ad.chunk.js": "/wofm/static/js/1.f42583ad.chunk.js",
+  "static/js/1.f42583ad.chunk.js.map": "/wofm/static/js/1.f42583ad.chunk.js.map",
   "runtime~main.js": "/wofm/static/js/runtime~main.cf3f265d.js",
   "runtime~main.js.map": "/wofm/static/js/runtime~main.cf3f265d.js.map",
   "static/media/bareRoom.png": "/wofm/static/media/bareRoom.ffaa817c.png",
@@ -35,6 +35,6 @@
   "static/media/woodBench.png": "/wofm/static/media/woodBench.90492294.png",
   "static/css/main.23619fce.chunk.css.map": "/wofm/static/css/main.23619fce.chunk.css.map",
   "index.html": "/wofm/index.html",
-  "precache-manifest.b184fab512c280dd6166a36eed5b0ebd.js": "/wofm/precache-manifest.b184fab512c280dd6166a36eed5b0ebd.js",
+  "precache-manifest.f3a1600d57b1b1b562a5e539e5c2eab5.js": "/wofm/precache-manifest.f3a1600d57b1b1b562a5e539e5c2eab5.js",
   "service-worker.js": "/wofm/service-worker.js"
 }
