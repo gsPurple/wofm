@@ -24,5 +24,6 @@ export const GAME = "game";
 export const STATS = "Stats";
 export const DEAD = "dead";
 
-export const TESTE = 255;
-export const TEST_GAMESAVE = [16,10,7,5,8,8,10,10,0,15,["Sword", "Shield", "Lantern", "Potion of Strength x2"]];
+export const TESTE = 258;
+export const TEST_GAMESAVE = [16,10,7,5,8,8,10,10,0,15,["Sword", "Shield", "Lantern", "Potion of Strength x2", "Boat House Key"]];
+export const TEST_EQUIPMENT = ["Sword", "Shield", "Lantern", "Potion of Strength x2","Potion of Invisibility","Cheese", "Iron Helmet"];

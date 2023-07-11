@@ -437,7 +437,7 @@ function handleChoiceButtons(props) {
             </button>
         )
     }
-    else if(props.page.current === 246 && !props.equipment.includes("Boat House Key")) {
+    else if((props.page.current === 246 || props.page.current === 249) && !props.equipment.includes("Boat House Key")) {
         for( let i = 1; i < choiceText.length; i++) {
             let choice = 'choice'+i
             buttons.push(

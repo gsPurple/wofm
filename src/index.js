@@ -6,34 +6,13 @@ import AdvPages from './pagesAdventure.js';
 import rollDie from './functions/RollDie';
 import GameView from './components/GameView';
 
-const NEXTPAGE = -1;
-const HOWTO = -2;
-const MAINMENU = -3;
-const STARTGAME = -4;
-const STMNROLL = -5;
-const LCKROLL = -6;
-const SKLROLL = -7;
-const ADVENTURE = -8;
-const HINTS = -9;
-
-const INITSTAMN = 0;
-const CRRNTSTAMN = 1;
-const INITLCK = 2;
-const CRRNTLCK = 3;
-const INITSKILL = 4;
-const CRRNTSKILL = 5;
-const INITPROVI = 6;
-const CRRNTPROVI = 7;
-const JEWELS = 8;
-const GOLD = 9;
-
-const TUTORIAL = "tutorial";
-const GAME = "game";
-const STATS = "Stats";
-const DEAD = "dead";
-
-const TESTE = 255;
-const TEST_GAMESAVE = [16,10,7,5,8,8,10,10,0,15,["Sword", "Shield", "Lantern", "Potion of Strength x2"]];
+import {STATS, NEXTPAGE, MAINMENU, ADVENTURE, HOWTO, TUTORIAL, HINTS, DEAD} from './ConstantFile';
+import {LCKROLL, CRRNTLCK, INITLCK} from './ConstantFile';
+import {CRRNTSKILL, INITSKILL} from './ConstantFile';
+import {INITPROVI, CRRNTPROVI} from './ConstantFile';
+import {STMNROLL, CRRNTSTAMN, INITSTAMN} from './ConstantFile';
+import {GOLD, JEWELS, GAME} from './ConstantFile';
+import {STARTGAME, TEST_GAMESAVE, TESTE, TEST_EQUIPMENT} from './ConstantFile';
 
 
 
@@ -349,7 +328,7 @@ class Game extends React.Component {
                     section: GAME,
                     pageArray: AdvPages.data,
                     gameSave: TEST_GAMESAVE,
-                    equipment: ["Sword", "Shield", "Lantern", "Potion of Strength x2","Potion of Invisibility","Cheese", "Iron Helmet"],
+                    equipment: TEST_EQUIPMENT,
                     pageNumber: TESTE,
                 });
                 break;

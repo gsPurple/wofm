@@ -2318,6 +2318,8 @@ var advPages = [
         pageContent: "The door squeaks open on rusty hinges. The room is dark and your eyes begin to adjust themselves as you close the door behind you. You hear a shuffling in the room but before you can react, a blow to your head knocks you senseless.\n\nLose 2 STAMINA points.",
         choices: ["Ouch - 122"],
         choice0: 245,
+        updtlife: true,
+        lifeAmount: -2,
         previous: -1
     },
     {
@@ -2376,8 +2378,10 @@ var advPages = [
     {
         current: 245,
         title: "122",
-        pageContent: "erro",
-        choices: [],
+        pageContent: "Their skin is a greeny-grey colour. Their clothes are tattered and torn",
+        image: 'wofm122.png',
+        choices: ["Continue"],
+        choice0: 257,
         previous: -1
     },
     {
@@ -2402,36 +2406,50 @@ var advPages = [
     {
         current: 248,
         title: "80",
-        pageContent: "erro",
-        choices: [],
+        pageContent: "The key fits the lock and opens the door. You find yourself in a large boathouse. Various boats, in different stages of construction, are lying around. Apart from the door behind you, there is another in the north wall. As you enter, the Skeletons stop their work and crane their bony necks around to look at you. They pick up planks of wood and hammers and advance towards you. There are five of them.\n\nDo you?",
+        choices: ["Smile nervously and back out of the door into the passage? - 129", "Tell them you've come about buying a boat? - 123", "Tell them you're their new boss and order them back to work? - 195", "Draw your sword and prepare for battle? - 140"],
+        choice0: 250,
+        choice1: 261,
+        choice2: 262,
+        choice3: 263,
         previous: -1
     },
     {
         current: 249,
         title: "264",
-        pageContent: "erro",
-        choices: [],
+        pageContent: "There is no way you are going to charge the door down, as it is twelve centimetres of solid oak!\n\nYou bruise your sword arm in the attempt - lose 1 SKILL point.\n\nYou can only get through the door if you have the Boat House key (if you have this key, you could use it, and more fool of you for not using it straightaway).\n\nOtherwise you will have to return to the riverbank and try again.",
+        choices: ["Use 'Boat House' key - 80", "Return to the riverbank - 129"],
+        choice0: 248,
+        choice1: 250,
+        updtSkill: true,
+        skillAmount: -1,
         previous: -1
     },
     {
         current: 250,
         title: "129",
-        pageContent: "erro",
-        choices: [],
+        pageContent: "You return to the riverbank and decide to try the door in the middle of the rockface.",
+        choices: ["Return to riverbank - 104"],
+        choice0: 232,
         previous: -1
     },
     {
         current: 251,
         title: "141",
-        pageContent: "erro",
-        choices: [],
+        pageContent: "When the old man learns of your quest for treasure he becomes angry and bids you begone - he'll have nothing to do with fortune-hunters. His dog senses his anger and snarls menacingly.\n\nYou may either smile, thank him and exit through the south door or you may stay to try to pacify him.",
+        choices: ["Exist through the south door - 66", "Try to pacify him - 111"],
+        choice0: 242,
+        choice1: 264,
         previous: -1
     },
     {
         current: 252,
         title: "165",
-        pageContent: "erro",
-        choices: [],
+        pageContent: "The old man thanks you and rather sheepishly ties up his boots. You explain that you mean no harm and he calms down, calling off his dog. He tells you that this area is the only passageway through to the inner chambers. Some years ago the river swelled after a particularly severe spring thaw and cut off supplies from the outside world.\n\nAll the area's inhabitants starved to death but the Master, realizing he needed defences against the outside world, put a curse on the area. The last remaining creatures became Undead and now guard the passageways through.\n\nHe starts to inquire about you. Will you:",
+        choices: ["Be straight with him and tell him off your quest? - 141", "Thank him for the chat and leave through the south door? - 66", "Try to grab the keys and go for the nearest door? - 249"],
+        choice0: 251,
+        choice1: 242,
+        choice2: 244,
         previous: -1
     },
     {
@@ -2482,57 +2500,62 @@ var advPages = [
         previous: -1
     },
     {
-        current: 0,
-        title: "0",
+        current: 257,
+        title: "122",
+        pageContent: "You awake with a throbbing head and look around. The room is about eight meters square, with doors to the north and south. You have been dumped in the south-west corner. Standing montionless in the center of the room are four men. At least, they appear to be men. Their skin is a greeny-grey color. Their clothes are tattered and torn - and they are all staring vacantly at the ceiling. One carries a club, one a scythe, one an axe and one a pick. They are ignoring you completely.\n\nAround the room are various peasant-style weapons (pitchforks, axe-handles, pointed sticks, etc.), one or two shields, and several barrels. In the north-east corner is a human corpse with a sword in one hand and a shield in the other. You move your hand up to your head to feel for signs of blood and you are relieved to find you are not bleeding. But as your hand moves, the strange creatures in the centre of the room turn their eyes down towards you.\n\nDo you:",
+        choices: ["Try to talk to them? - 268", "Jump to your feet and charge them with your sword? - 282", "Scramble for an exit through the south door? - 13"],
+        choice0: 258,
+        choice1: 259,
+        choice2: 260,
+        previous: -1
+    },
+    {
+        current: 258,
+        title: "268",
+        pageContent: "Their vocabulary is limited to a series of moans and groans. They appear not to be intelligent at all. Furthermore your conversation merely serves to attract their attention to you. They grip their weapons and it looks as though you will have to fight them. However, there is a slim chance that you could make it to the door you came in through.\n\nYou can try for that door or you can prepare yourself for battle.",
+        choices: ["Try to reach door - 13", "Prepare for battle - 282"],
+        choice0: 260,
+        choice1: 259,
+        previous: -1
+    },
+    {
+        current: 259,
+        title: "282",
         pageContent: "erro",
         choices: [],
         previous: -1
     },
     {
-        current: 0,
-        title: "0",
+        current: 260,
+        title: "13",
         pageContent: "erro",
         choices: [],
         previous: -1
     },
     {
-        current: 0,
-        title: "0",
+        current: 261,
+        title: "123",
         pageContent: "erro",
         choices: [],
         previous: -1
     },
     {
-        current: 0,
-        title: "0",
+        current: 262,
+        title: "195",
         pageContent: "erro",
         choices: [],
         previous: -1
     },
     {
-        current: 0,
-        title: "0",
+        current: 263,
+        title: "140",
         pageContent: "erro",
         choices: [],
         previous: -1
     },
     {
-        current: 0,
-        title: "0",
-        pageContent: "erro",
-        choices: [],
-        previous: -1
-    },
-    {
-        current: 0,
-        title: "0",
-        pageContent: "erro",
-        choices: [],
-        previous: -1
-    },
-    {
-        current: 0,
-        title: "0",
+        current: 264,
+        title: "111",
         pageContent: "erro",
         choices: [],
         previous: -1
