@@ -4,6 +4,7 @@ import {STMNROLL, LCKROLL, HOWTO, STARTGAME} from '../ConstantFile';
 import TextContent from './TextContent';
 import BattleContent from './BattleContent';
 import StatsView from './StatsView';
+import MobileWarning from './MobileWarning';
 
 class GameView extends React.Component {
     constructor(props) {
@@ -277,16 +278,14 @@ class GameView extends React.Component {
                                 >
                                 HINTS ON PLAY
                             </button>
-                            <button className="menubuttons"
+                            <button id='start-button' className="menubuttons"
                                 onClick={() => this.props.onClick(STARTGAME)}
                                 >
                                 START YOUR ADVENTURE
                             </button>
-                            <button className="menubuttons"
-                                onClick={() => this.props.onClick("teste")}
-                                >
-                                TEST PAGE
-                            </button>
+                            
+                            <p>This is a work in progress, there are some bugs and not all pages have been transcribed, but you are welcome to play until you reach an "Error" page wall.</p>
+                            <p>For those reasons, there is no progress save feature.</p>
                         </div>
                     </div>
                 );
@@ -296,6 +295,7 @@ class GameView extends React.Component {
     render() {
         return (
             <div>
+                <MobileWarning />
                 {this.renderGameView()}
             </div>
         );

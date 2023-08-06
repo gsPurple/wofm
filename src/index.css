@@ -26,6 +26,7 @@ body {
 .menubuttons {
     display: block;
     margin:0 auto;
+    margin-bottom: 0.5rem;
 }
 
 .buttonback {
@@ -226,4 +227,32 @@ body {
   background: #f5de31;
   cursor: pointer;
 }
+
+/* src/MobileWarning.css */
+.mobile-warning-container {
+    display: none;
+}
+  
+@media (max-width: 979px) {
+    .mobile-warning-container {
+      display: block;
+      position: absolute;
+      width: 100%;
+      left: 0;
+      background-color: #f44336;
+      color: #fff;
+      text-align: center;
+      margin-top: 12rem;
+      z-index: 99999;
+    }
+
+    .textview {
+        max-width: 20rem;
+    }
+
+    #start-button {
+        display: none;
+    }
+}
+  
 
