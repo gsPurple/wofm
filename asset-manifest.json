@@ -1,7 +1,7 @@
 {
-  "main.css": "/wofm/static/css/main.23619fce.chunk.css",
-  "main.js": "/wofm/static/js/main.770f7bf4.chunk.js",
-  "main.js.map": "/wofm/static/js/main.770f7bf4.chunk.js.map",
+  "main.css": "/wofm/static/css/main.bded3d3e.chunk.css",
+  "main.js": "/wofm/static/js/main.d93bbaef.chunk.js",
+  "main.js.map": "/wofm/static/js/main.d93bbaef.chunk.js.map",
   "static/js/1.f42583ad.chunk.js": "/wofm/static/js/1.f42583ad.chunk.js",
   "static/js/1.f42583ad.chunk.js.map": "/wofm/static/js/1.f42583ad.chunk.js.map",
   "runtime~main.js": "/wofm/static/js/runtime~main.cf3f265d.js",
@@ -34,8 +34,8 @@
   "static/media/wofm383.png": "/wofm/static/media/wofm383.72edd2b6.png",
   "static/media/wofmsword.png": "/wofm/static/media/wofmsword.e7874d55.png",
   "static/media/woodBench.png": "/wofm/static/media/woodBench.90492294.png",
-  "static/css/main.23619fce.chunk.css.map": "/wofm/static/css/main.23619fce.chunk.css.map",
+  "static/css/main.bded3d3e.chunk.css.map": "/wofm/static/css/main.bded3d3e.chunk.css.map",
   "index.html": "/wofm/index.html",
-  "precache-manifest.3470ccb98eff72c7e1d2f918eaeec9cb.js": "/wofm/precache-manifest.3470ccb98eff72c7e1d2f918eaeec9cb.js",
+  "precache-manifest.5178519bbb753f14a8c2a6ab8e694a83.js": "/wofm/precache-manifest.5178519bbb753f14a8c2a6ab8e694a83.js",
   "service-worker.js": "/wofm/service-worker.js"
 }

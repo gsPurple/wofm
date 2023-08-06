@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "770f7bf4f1daac12e193",
-    "url": "/wofm/static/css/main.23619fce.chunk.css"
+    "revision": "d93bbaef2a78f2d1b5d3",
+    "url": "/wofm/static/css/main.bded3d3e.chunk.css"
   },
   {
-    "revision": "770f7bf4f1daac12e193",
-    "url": "/wofm/static/js/main.770f7bf4.chunk.js"
+    "revision": "d93bbaef2a78f2d1b5d3",
+    "url": "/wofm/static/js/main.d93bbaef.chunk.js"
   },
   {
     "revision": "f42583ad94c13b75d4e3",
@@ -128,7 +128,7 @@ self.__precacheManifest = [
     "url": "/wofm/static/media/woodBench.90492294.png"
   },
   {
-    "revision": "9d95e96e2e12523e21fd119aef50ae5e",
+    "revision": "c96d11b2c598d55152afb0371f676c5a",
     "url": "/wofm/index.html"
   }
 ];
